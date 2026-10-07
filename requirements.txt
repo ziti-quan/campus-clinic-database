@@ -1,0 +1,13 @@
+# 校园医务室信息管理系统 · 运行依赖
+# 安装：pip install -r requirements.txt
+#
+# 说明：
+#   三个 Flask 应用（app.py / app_D.py / admin.py）共用同一套依赖。
+#   数据库驱动必须是 PyMySQL，因为 SQLALCHEMY_DATABASE_URI 写的是
+#   mysql+pymysql://... ；只装 mysqlclient 或 mysql-connector 都不匹配。
+
+Flask>=2.2,<4.0
+Flask-SQLAlchemy>=3.0,<4.0
+SQLAlchemy>=2.0,<3.0
+PyMySQL>=1.0
+Werkzeug>=2.2

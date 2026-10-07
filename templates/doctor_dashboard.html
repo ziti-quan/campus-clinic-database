@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医生就诊系统 - {{ doctor_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor.css') }}">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- 顶部标题栏 -->
+        <header class="dashboard-header">
+            <h1 class="dashboard-title">医生就诊系统 - {{ doctor_name }}</h1>
+            <a href="{{ url_for('doctor_logout') }}" class="logout-btn">退出登录</a>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="dashboard-main">
+              <div class="action-panel">
+                <button id="showSchedulesBtn" class="action-btn">
+                    <span class="btn-icon">📅</span>
+                    <span>就诊安排</span>
+                </button>
+                <button id="showMedicinesBtn" class="action-btn">
+                    <span class="btn-icon">💊</span>
+                    <span>药品信息</span>
+                </button>
+                <button id="showMyScheduleBtn" class="action-btn">
+                    <span class="btn-icon">📋</span>
+                    <span>我的排班表</span>
+                </button>
+                <button id="showAllPatientsBtn" class="action-btn">
+                    <span class="btn-icon">👥</span>
+                    <span>我的患者</span>
+                </button>
+                <button id="prescribeMedicineBtn" class="action-btn">
+                    <span class="btn-icon">💊</span>
+                    <span>开药</span>
+                </button>
+              </div>
+
+              <div id="schedulesContainer" class="data-container hidden">
+                  <h2>就诊安排</h2>
+                  <!-- 日期选择按钮组 -->
+                  <div class="date-buttons">
+                      <button class="date-btn" data-date="2025-06-10">2025-06-10</button>
+                      <button class="date-btn" data-date="2025-06-11">2025-06-11</button>
+                      <button class="date-btn" data-date="2025-06-12">2025-06-12</button>
+                  </div>
+                  
+                  <!-- 患者信息表格 -->
+                  <div class="patients-table">
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th>患者ID</th>
+                                  <th>患者姓名</th>
+                                  <th>性别</th>
+                                  <th>就诊日期</th>
+                              </tr>
+                          </thead>
+                          <tbody></tbody>
+                      </table>
+                  </div>
+              </div>
+
+            <!-- 药品信息面板 -->
+            <div id="medicinesContainer" class="data-panel hidden">
+                <h2 class="panel-title">药品库存</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>药品名称</th>
+                                <th>库存</th>
+                                <th>单价(元)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 新增排班表面板 -->
+            <div id="myScheduleContainer" class="data-panel hidden">
+                <h2 class="panel-title">我的排班表</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>科室</th>
+                                <th>医生姓名</th>
+                                <th>就诊日期</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 在数据面板区域添加我的患者容器 -->
+            <div id="allPatientsContainer" class="data-panel hidden">
+                <h2 class="panel-title">我的所有患者</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>患者ID</th>
+                                <th>患者姓名</th>
+                                <th>性别</th>
+                                <th>就诊日期</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 添加开药面板 -->
+            <div id="prescribeMedicineContainer" class="data-panel hidden">
+                <h2 class="panel-title">选择患者开药</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>患者ID</th>
+                                <th>患者姓名</th>
+                                <th>性别</th>
+                                <th>就诊日期</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prescribePatientList"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/doctor_dashboard.js') }}"></script>
+</body>
+</html>

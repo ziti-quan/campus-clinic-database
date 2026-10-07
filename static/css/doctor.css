@@ -1,0 +1,246 @@
+/* ===== 仪表盘样式 ===== */
+.dashboard-wrapper {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+}
+
+.dashboard-header {
+    background: linear-gradient(135deg, #1976d2, #2196f3);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.logout-btn {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: #f44336;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
+.dashboard-main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* 操作按钮区 */
+.action-panel {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.action-btn {
+    padding: 1rem 1.5rem;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #e3f2fd;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+/* 数据面板 */
+.data-panel {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.panel-title {
+    color: #1976d2;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 500;
+}
+
+.data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none;
+}
+
+/* 无数据提示 */
+.no-data {
+    text-align: center;
+    color: #757575;
+    padding: 1rem;
+}
+
+/* 确保新增面板样式一致 */
+#myScheduleContainer {
+    margin-top: 20px;
+}
+
+/* 表格列宽调整 */
+.data-table td:nth-child(1) { width: 25%; }  /* 科室 */
+.data-table td:nth-child(2) { width: 25%; }  /* 医生姓名 */
+.data-table td:nth-child(3) { width: 20%; }  /* 就诊日期 */
+
+/* 日期按钮样式 */
+.date-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.date-btn {
+    padding: 8px 15px;
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.date-btn:hover {
+    background-color: #bbdefb;
+}
+
+/* 加载状态 */
+.loading {
+    text-align: center;
+    color: #757575;
+}
+
+/* 表格样式增强 */
+.patients-table {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.patients-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patients-table th {
+    background-color: #e3f2fd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.patients-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+/* 病历页面样式 */
+/* 病历页面按钮调整 */
+.record-container {
+    position: relative; /* 为绝对定位按钮提供参考 */
+}
+
+/* 返回仪表盘按钮 - 右上角 */
+.return-to-dashboard {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.return-to-dashboard:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+}
+
+/* 编辑病历按钮 - 文本框右下角 */
+.edit-record-btn-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.edit-record-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.edit-record-btn:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+/* 调整文本框容器位置 */
+.record-textarea-container {
+    position: relative;
+    margin-bottom: 50px; /* 为按钮留出空间 */
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作提示</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor.css') }}">
+</head>
+<body>
+    <div class="container" style="text-align:center; padding-top:80px;">
+        <h1>操作提示</h1>
+        <p style="font-size:18px; color:#555; margin:24px 0;">
+            {{ message }}
+        </p>
+        <a href="{{ url_for('doctor_dashboard') }}" class="logout-btn">返回就诊网页</a>
+    </div>
+</body>
+</html>

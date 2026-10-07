@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>病历记录 - {{ patient_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor.css') }}">
+    <style>
+        .record-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .patient-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .record-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .edit-mode .record-display {
+            display: none;
+        }
+        .edit-mode .record-edit {
+            display: block;
+        }
+        .record-edit {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <header class="dashboard-header">
+            <h1 class="dashboard-title">病历记录 - {{ patient_name }}</h1>
+            <!-- 返回按钮移到右上角 -->
+            <a href="{{ url_for('doctor_dashboard') }}" class="return-to-dashboard">返回就诊网页</a>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="record-container">
+                <div class="patient-info">
+                    <h2>{{ patient_name }} (ID: {{ patient_id }})</h2>
+                    <p>就诊日期: {{ visit_date }}</p>
+                </div>
+
+                <div id="recordDisplay" class="record-display">
+                    <h3>病历记录</h3>
+                    <div class="record-content">
+                        {% if medical_record %}
+                            <pre>{{ medical_record }}</pre>
+                        {% else %}
+                            <p class="no-data">暂无病历记录</p>
+                        {% endif %}
+                    </div>
+                    <!-- 编辑按钮容器 -->
+                    <div class="edit-record-btn-container">
+                        <button id="editBtn" class="edit-record-btn">编辑病历</button>
+                    </div>
+                </div>
+
+                <div id="recordEdit" class="record-edit">
+                    <h3>编辑病历</h3>
+                    <div class="record-textarea-container">
+                        <textarea id="medicalRecordText" class="record-textarea">{% if medical_record %}{{ medical_record }}{% endif %}</textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="cancelEditBtn" class="action-btn">取消</button>
+                        <button id="saveRecordBtn" class="action-btn" style="background-color: #4CAF50; color: white;">保存</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editBtn = document.getElementById('editBtn');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
+            const saveRecordBtn = document.getElementById('saveRecordBtn');
+            const recordDisplay = document.getElementById('recordDisplay');
+            const recordEdit = document.getElementById('recordEdit');
+            const medicalRecordText = document.getElementById('medicalRecordText');
+            
+            // 进入编辑模式
+            editBtn.addEventListener('click', function() {
+                document.body.classList.add('edit-mode');
+            });
+            
+            // 取消编辑
+            cancelEditBtn.addEventListener('click', function() {
+                document.body.classList.remove('edit-mode');
+            });
+            
+            // 保存病历
+            saveRecordBtn.addEventListener('click', function() {
+                const recordContent = medicalRecordText.value;
+                
+                fetch('/api/save_medical_record', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        patient_id: '{{ patient_id }}',
+                        visit_date: '{{ visit_date }}',
+                        medical_record: recordContent
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('病历保存成功');
+                        location.reload();
+                    } else {
+                        alert('保存失败: ' + (data.error || '未知错误'));
+                    }
+                })
+                .catch(error => {
+                    console.error('保存病历出错:', error);
+                    alert('保存病历时出错');
+                });
+            });
+        });
+
+        
+    </script>
+</body>
+</html>

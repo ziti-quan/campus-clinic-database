@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医院管理系统 - 管理员</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>医院管理系统 - 管理员</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="department">科室管理</button>
+            <button class="tab-btn" data-tab="doctor">医生管理</button>
+            <button class="tab-btn" data-tab="medicine">药品管理</button>
+            <button class="tab-btn" data-tab="schedule">排班管理</button>
+        </div>
+        
+        <!-- 科室管理 -->
+        <div id="department" class="tab-content active">
+            <h2>科室管理</h2>
+            <div class="form-group">
+                <button id="add-de-btn">添加科室</button>
+            </div>
+            <table id="department-table">
+                <thead>
+                    <tr>
+                        <th>科室编号</th>
+                        <th>科室名称</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+        <!-- 医生管理 -->
+        <div id="doctor" class="tab-content">
+            <h2>医生管理</h2>
+            <div class="form-group">
+                <button id="add-doctor-btn">添加医生</button>
+            </div>
+            <table id="doctor-table">
+                <thead>
+                    <tr>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>职称</th>
+                        <th>科室</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+        <!-- 药品管理 -->
+        <div id="medicine" class="tab-content">
+            <h2>药品管理</h2>
+            <div class="form-group">
+                <button id="add-medicine-btn">添加药品</button>
+            </div>
+            <table id="medicine-table">
+                <thead>
+                    <tr>
+                        <th>药品ID</th>
+                        <th>药品名称</th>
+                        <th>库存数量</th>
+                        <th>单价</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+        <!-- 排班管理 -->
+        <div id="schedule" class="tab-content">
+            <h2>排班管理</h2>
+            <div class="form-group">
+                <button id="add-schedule-btn">添加排班</button>
+            </div>
+            <table id="schedule-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>医生姓名</th>
+                        <th>医生职称</th>
+                        <th>科室名称</th>
+                        <th>出诊日期</th>
+                        <th>挂号余量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">添加科室</h2>
+            <form id="modal-form">
+                <!-- 动态表单内容将通过JS填充 -->
+            </form>
+            <div class="form-group">
+                <button id="submit-btn">提交</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>

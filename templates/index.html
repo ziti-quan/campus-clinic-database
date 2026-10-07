@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区医院挂号系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-hospital-alt"></i> 社区医院挂号系统</h1>
+            <a href="{{ url_for('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> 退出登录</a>
+        </header>
+
+        <main class="app-main">
+            <div class="action-panel">
+                <button id="showDoctorsBtn" class="action-btn">
+                    <i class="fas fa-user-md"></i>
+                    <span>医生信息</span>
+                </button>
+                <button id="showDeptBtn" class="action-btn">
+                    <i class="fas fa-calendar-plus"></i>
+                    <span>挂号预约</span>
+                </button>
+                <button id="showMyRegBtn" class="action-btn">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>我的挂号</span>
+                </button>
+                <button id="showMedicalRecordsBtn" class="action-btn">
+                    <i class="fas fa-file-medical"></i>
+                    <span>我的病历</span>
+                </button>
+                <button id="showPrescriptionsBtn" class="action-btn">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                    <span>我的药单</span>
+                </button>
+            </div>
+
+            <div class="content-container">
+                <div id="doctorsTableContainer" class="data-container hidden">
+                    <div class="data-header">
+                        <h2><i class="fas fa-user-md"></i> 医生信息</h2>
+                    </div>
+                    <div class="data-content"></div>
+                </div>
+
+                <div id="scheduleContainer" class="data-container">
+                    <!-- 动态内容将在这里显示 -->
+                </div>
+
+                <div id="medicalRecordsContainer" class="data-container hidden">
+                    <div class="data-header">
+                        <h2><i class="fas fa-file-medical"></i> 病历记录</h2>
+                    </div>
+                    <div class="data-content"></div>
+                </div>
+
+                <div id="prescriptionsContainer" class="data-container hidden">
+                    <div class="data-header">
+                        <h2><i class="fas fa-prescription-bottle-alt"></i> 药单记录</h2>
+                    </div>
+                    <div class="data-content"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

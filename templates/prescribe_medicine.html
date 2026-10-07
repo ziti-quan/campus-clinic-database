@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开药 - 医生系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor.css') }}">
+    <style>
+        .medicine-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .patient-info {
+            padding: 15px;
+            background: #f5f7fa;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .medicine-selection {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .medicine-selection select, 
+        .medicine-selection input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .selected-medicines table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .selected-medicines th, 
+        .selected-medicines td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .selected-medicines th {
+            background-color: #e3f2fd;
+        }
+        
+        .remove-medicine {
+            color: #f44336;
+            cursor: pointer;
+        }
+        
+        .prescription-history {
+            margin-top: 30px;
+        }
+        
+        .prescription-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <header class="dashboard-header">
+            <h1 class="dashboard-title">开药系统 - {{ doctor_name }}</h1>
+            <a href="{{ url_for('doctor_dashboard') }}" class="logout-btn">返回</a>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="medicine-container">
+                <!-- 患者信息 -->
+                <div class="patient-info">
+                    <h3 id="patientName"></h3>
+                    <p>患者ID: <span id="patientId"></span> | 性别: <span id="patientGender"></span></p>
+                    <p>就诊日期: <span id="visitDate"></span></p>
+                </div>
+                
+                <!-- 药品选择 -->
+                <div class="medicine-controls">
+                    <h3>添加药品</h3>
+                    <div class="medicine-selection">
+                        <select id="medicineSelect">
+                            <option value="">选择药品</option>
+                        </select>
+                        <input type="number" id="medicineQuantity" min="1" value="1" placeholder="数量">
+                        <button id="addMedicineBtn" class="action-btn">添加</button>
+                    </div>
+                    
+                    <div id="selectedMedicines" class="selected-medicines">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>药品名称</th>
+                                    <th>单价</th>
+                                    <th>数量</th>
+                                    <th>小计</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">总费用</td>
+                                    <td id="totalPrice">0.00</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <button id="submitPrescriptionBtn" class="action-btn" style="background-color: #4CAF50; color: white;">提交处方</button>
+                </div>
+                
+                <!-- 历史处方 -->
+                <div class="prescription-history">
+                    <h3>历史处方记录</h3>
+                    <div id="prescriptionList"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/prescribe_medicine.js') }}"></script>
+</body>
+</html>
